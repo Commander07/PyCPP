@@ -1,6 +1,6 @@
 <p align=center>
 
-  <img height="128px" src=""/>
+  <img height="128px" src="https://user-images.githubusercontent.com/45269106/103140882-5d82a000-46ec-11eb-8728-bbde13d2b244.png"/>
 
   <br>
   <span>PyCPP is a simple template/package for wrapping and using <a href="">C++</a> functions and libraries.</span>
