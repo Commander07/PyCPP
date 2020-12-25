@@ -30,10 +30,6 @@ $ git clone https://github.com/Commander07/PyCPP.git
 # change the working directory to PyCPP
 $ cd PyCPP
 
-# create and activate python environment
-$ python3 -m venv bot-env
-$ bot-env\Scripts\activate.bat
-
 # install the requirements
 $ python3 -m pip install -r requirements.txt
 ```
@@ -46,10 +42,6 @@ $ git clone https://github.com/Commander07/PyCPP.git
 
 # change the working directory to PyCPP
 $ cd PyCPP
-
-# create and activate python environment
-$ python3 -m venv bot-env
-$ source bot-env/bin/activate
 
 # install the requirements
 $ python3 -m pip install -r requirements.txt
