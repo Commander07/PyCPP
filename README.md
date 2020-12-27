@@ -3,7 +3,7 @@
   <img height="128px" src="https://user-images.githubusercontent.com/45269106/103140882-5d82a000-46ec-11eb-8728-bbde13d2b244.png"/>
 
   <br>
-  <span>PyCPP is a simple template/package for wrapping and using <a href="">C++</a> functions and libraries.</span>
+  <span>PyCPP is a simple tool for wrapping and using <a href="">C++</a> functions and libraries.</span>
   <br>
   <a target="_blank" href="https://www.python.org/downloads/" title="Python version"><img src="https://img.shields.io/badge/python-%3E=_3.6-green.svg"></a>
   <a target="_blank" href="LICENSE" title="License: MIT"><img src="https://img.shields.io/github/license/commander07/PyCPP"></a>
