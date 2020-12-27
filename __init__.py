@@ -1,29 +1,43 @@
 import ctypes
 import os
-from . import FuncParser
-lib_name = os.path.realpath(__file__).replace("__init__.py", "dllmain.dll")
-c_lib = ctypes.CDLL(lib_name)
-funcs = FuncParser.parse("pycpp/dll/dllmain.cpp")
+from shutil import copy
+try:
+  from . import FuncParser
+except ImportError:
+  import FuncParser
 
 
-# Example function
-def cmult(x: int, y: float) -> float:
-  c_lib.cmult.restype = ctypes.c_float
-  return c_lib.cmult(x, ctypes.c_float(y))
+def loadDLL(dll):
+  c_lib = ctypes.CDLL(dll + ".dll")
+  funcs = FuncParser.parse('/'.join(dll.split("/")[:-1]) + "/src/" + dll.split("/")[-1] + ".cpp")
+  return c_lib, funcs
 
 
-def call(func, *args):
-  f_code = "def {{name}}({{*arg}}):\nc_lib.{{name}}.restype = {{res}}\nreturn c_lib.cmult({{*arg_}})"
-  f = getattr(c_lib, func)
-  arg = []
-  arg_ = []
+def wrap(dll, out):
+  c_lib, funcs = loadDLL(dll)
+  code = []
   for ff in funcs:
-    if ff.name == func:
-      f.restype = ff.restype
-      i = 0
-      for key in ff.args:
-        arg.append(ff.args[key](args[i]))
-        arg.append("ctypes." + ff.args[key] + "(" + args[i] + ")")
-        i += 1
-      break
-  f(*arg)
+    f_code = "def {{name}}({{*arg}}):\n\tc_lib.{{name}}.restype = {{res}}\n\treturn c_lib.cmult({{*arg_}})"
+    star_arg = ""
+    star_arg_ = ""
+    i = 0
+    f_code = f_code.replace("{{name}}", ff.name).replace("{{res}}", "ctypes." + str(ff.restype))
+    for key in ff.args:
+      star_arg += key + ", "
+      star_arg_ += "ctypes." + str(ff.args[key]) + "(" + key + "), "
+      i += 1
+    f_code = f_code.replace("{{*arg}}", star_arg[:-2]).replace("{{*arg_}}", star_arg_[:-2])
+    code.append(f_code)
+  if not os.path.exists(out + "/" + dll.split("/")[-1]):
+    os.makedirs(out + "/" + dll.split("/")[-1])
+  file = open(out + "/" + dll.split("/")[-1] + "/__init__.py", "w")
+  file.write("")
+  file.close()
+  file = open(out + "/" + dll.split("/")[-1] + "/__init__.py", "a")
+  file.write('import ctypes,os\nlib_name = os.path.realpath(__file__).replace("__init__.py", "dllmain.dll")\nc_lib = ctypes.CDLL(lib_name)\n')
+  for d in code:
+    file.write(d)
+    # exec(d, globals())
+  file.close()
+  copy(dll + ".dll", out + "/" + dll.split("/")[-1] + "/" + dll.split("/")[-1] + ".dll")
+  return code

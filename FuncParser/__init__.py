@@ -23,15 +23,14 @@ def parse(file):
         define_ = line.split(" ")[1]
       continue
     if nextLineEqFunc:
-      print(line)
       fs = line.split(" ")
       args = {}
       args_ = re.findall(between_args, line)[0].split(", ")
       for arg in args_:
         arg_ = arg.split(" ")
-        args[arg_[1]] = getattr(ctypes, "c_" + arg_[0])
+        args[arg_[1]] = "c_" + arg_[0]
       name = fs[1].split("(")[0]
-      res = getattr(ctypes, "c_" + fs[0])
+      res = "c_" + fs[0]
       funcs.append(func_(res, args, name))
     if line == define_ and define:
       nextLineEqFunc = True
