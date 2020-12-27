@@ -47,6 +47,13 @@ $ cd PyCPP
 $ python3 -m pip install -r requirements.txt
 ```
 
+## Usage
+
+```console
+# Call pycpp.py and create python package in the output folder which includes the wrapped dll
+$ python3 -m pycpp <DLL Name> <Output>
+```
+
 ## Resources
 
 - [Online Documentation](about:blank) for official documentation.
