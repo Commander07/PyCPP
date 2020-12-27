@@ -8,8 +8,8 @@ except ImportError:
 
 
 def loadDLL(dll):
-  c_lib = ctypes.CDLL(dll + ".dll")
-  funcs = FuncParser.parse('/'.join(dll.split("/")[:-1]) + "/src/" + dll.split("/")[-1] + ".cpp")
+  c_lib = ctypes.CDLL(os.getcwd() + "/" + dll + ".dll")
+  funcs = FuncParser.parse(os.getcwd() + "/" + '/'.join(dll.split("/")[:-1]) + "/src/" + dll.split("/")[-1] + ".cpp")
   return c_lib, funcs
 
 
@@ -28,16 +28,16 @@ def wrap(dll, out):
       i += 1
     f_code = f_code.replace("{{*arg}}", star_arg[:-2]).replace("{{*arg_}}", star_arg_[:-2])
     code.append(f_code)
-  if not os.path.exists(out + "/" + dll.split("/")[-1]):
-    os.makedirs(out + "/" + dll.split("/")[-1])
-  file = open(out + "/" + dll.split("/")[-1] + "/__init__.py", "w")
+  if not os.path.exists(os.getcwd() + "/" + out + "/" + dll.split("/")[-1]):
+    os.makedirs(os.getcwd() + "/" + out + "/" + dll.split("/")[-1])
+  file = open(os.getcwd() + "/" +out + "/" + dll.split("/")[-1] + "/__init__.py", "w")
   file.write("")
   file.close()
-  file = open(out + "/" + dll.split("/")[-1] + "/__init__.py", "a")
+  file = open(os.getcwd() + "/" + out + "/" + dll.split("/")[-1] + "/__init__.py", "a")
   file.write('import ctypes,os\nlib_name = os.path.realpath(__file__).replace("__init__.py", "dllmain.dll")\nc_lib = ctypes.CDLL(lib_name)\n')
   for d in code:
     file.write(d)
     # exec(d, globals())
   file.close()
-  copy(dll + ".dll", out + "/" + dll.split("/")[-1] + "/" + dll.split("/")[-1] + ".dll")
+  copy(os.getcwd() + "/" + dll + ".dll", os.getcwd() + "/" +out + "/" + dll.split("/")[-1] + "/" + dll.split("/")[-1] + ".dll")
   return code

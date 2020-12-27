@@ -4,15 +4,15 @@ with open("README.md", "r", encoding="utf-8") as fh:
   long_description = fh.read()
 
 setuptools.setup(
-  name="PyCpp-Commander07",
-  version="0.0.1",
-  author="Example Author",
+  name="PyCPP",
+  version="0.0.4",
+  author="Commander07",
   author_email="author@example.com",
-  description="A small example package",
+  description="PyCPP is a simple tool for wrapping and using C++ functions and libraries.",
   long_description=long_description,
   long_description_content_type="text/markdown",
   url="https://github.com/commander07/PyCPP",
   packages=setuptools.find_packages(),
   python_requires='>=3.6',
-  scripts=['bin/pycpp']
+  scripts=['bin/pycpp.py']
 )

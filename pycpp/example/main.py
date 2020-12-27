@@ -1,3 +1,3 @@
 import pycpp
 import os
-pycpp.wrap("pycpp/pycpp/example/dllmain", os.getcwd())
+pycpp.wrap("pycpp/example/dllmain", os.getcwd())
