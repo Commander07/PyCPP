@@ -21,42 +21,22 @@
 
 ## Installation
 
-### Windows
-
 ```console
-# clone the repo
-$ git clone https://github.com/Commander07/PyCPP.git
-
-# change the working directory to PyCPP
-$ cd PyCPP
-
-# install the requirements
-$ python3 -m pip install -r requirements.txt
-```
-
-### Linux
-
-```console
-# clone the repo
-$ git clone https://github.com/Commander07/PyCPP.git
-
-# change the working directory to PyCPP
-$ cd PyCPP
-
-# install the requirements
-$ python3 -m pip install -r requirements.txt
+# install via pypi
+$ pip3 install PyCPP
 ```
 
 ## Usage
 
 ```console
-# Call pycpp.py and create python package in the output folder which includes the wrapped dll
+# call pycpp.py and create python package in the output folder which includes the wrapped dll
 $ python3 -m pycpp <DLL Name> <Output>
 ```
 
 ## Resources
 
 - [Online Documentation](about:blank) for official documentation.
+- [PyPi](https://pypi.org/project/PyCPP/) Package release page.
 
 ## Contributing
 
