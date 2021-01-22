@@ -1,14 +1,18 @@
+"""Parses c++ code to get function name and arguments."""
 import re
 
 
 class func_:
   def __init__(self, restype, args, name):
+    """Function create a object which contains
+    the correct types for a function."""
     self.args = args
     self.restype = restype
     self.name = name
 
 
 def parse(file):
+  """Parses c++ code to get function name and arguments."""
   code = open(file).read().split("\n")
   between_args = "\\((.*)\\)"
   funcs = []

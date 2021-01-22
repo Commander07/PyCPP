@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
   name="PyCPP",
-  version="0.0.5",
+  version="0.0.6",
   author="Commander07",
   author_email="author@example.com",
   description="PyCPP is a simple tool for wrapping and using C++ functions and libraries.",

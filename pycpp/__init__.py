@@ -1,3 +1,4 @@
+"""PyCPP is a simple tool for wrapping and using C++ functions and libraries."""
 import ctypes
 import os
 from shutil import copy
